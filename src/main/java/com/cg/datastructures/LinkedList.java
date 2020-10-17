@@ -15,11 +15,11 @@ public class LinkedList {
     }
 
     public static void main(String[] args) {
-        Node head = new Node(70);
+        Node head = new Node(56);
 
-        Node newHead=LinkedList.adding(head,30);
-        Node newHead1=LinkedList.adding(newHead,50);
-        displayList(newHead1);
+        Node newTail=LinkedList.append(head,head,30);
+        Node newTail2=LinkedList.append(head,newTail,70);
+        displayList(head);
 
     }
 
@@ -38,6 +38,20 @@ public class LinkedList {
         newNode.next=head;
         head=newNode;
         return head;
+    }
+
+    public static Node append(Node head,Node tail,int data)
+    {
+        Node newNode=new Node(data);
+        Node current=head;
+        while(current.next!=null)
+        {
+            current=current.next;
+        }
+        current.next=newNode;
+        newNode.next=null;
+        newNode=tail;
+        return  tail;
     }
 
 
