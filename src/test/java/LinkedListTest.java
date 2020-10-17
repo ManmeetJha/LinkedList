@@ -19,5 +19,20 @@ public class LinkedListTest {
 
     }
 
+    @Test
+    public void searchAndInsert()
+    {
+        LinkedList.Node head = new LinkedList.Node(56);
+        LinkedList.Node second = new LinkedList.Node(30);
+        LinkedList.Node third = new LinkedList.Node(70);
+
+        head.setNext(second);
+        second.setNext(third);
+
+        int pos=LinkedList.searchAndInsert(head,30,40);
+        Assert.assertEquals(3, pos);
+    }
+
+
 
 }
