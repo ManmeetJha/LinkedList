@@ -42,11 +42,12 @@ public class LinkedList {
         third.setNext(null);
 
         displayList(head);
-        int pos = LinkedList.search(head, 30);
-        if (pos == -1)
+        int pos=searchAndInsert(head,30,40);
+        if(pos==-1)
             System.out.println("Element not found");
         else
-            System.out.println("Element is at position:" + pos);
+            System.out.println("Element inserted at:"+pos);
+        displayList(head);
 
 
     }
@@ -122,5 +123,27 @@ public class LinkedList {
             return -1;
     }
 
+    public static int searchAndInsert(Node head,int data,int insert_data)
+    {   Node newNode=new Node(insert_data);
+        Node current=head;
+        int position=1;
+        boolean found=false;
+        while(current.next!=null)
+        {
+            if(current.data==data)
+            {
+                newNode.next=current.next;
+                current.next=newNode;
+                found=true;
+                break;
+            }
+            current=current.next;
+            position++;
+        }
+        if(found==true)
+        return position+1;
+        else
+            return -1;
+    }
 
 }
