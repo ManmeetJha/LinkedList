@@ -16,14 +16,15 @@ public class LinkedList {
 
     public static void main(String[] args) {
         Node head = new Node(56);
-        Node second = new Node(70);
+        Node second = new Node(30);
+        Node third=new Node(70);
 
         head.next = second;
-        second.next = null;
+        second.next = third;
+        third.next=null;
 
-        LinkedList.insert(head, 30);
-
-        displayList(head);
+        Node newHead=LinkedList.pop(head);
+        displayList(newHead);
 
     }
 
@@ -60,6 +61,14 @@ public class LinkedList {
         Node newNode = new Node(data);
         newNode.next = previous.next;
         previous.next = newNode;
+    }
+
+    public static Node pop(Node head)
+    {
+        Node temp=head;
+        head=head.next;
+        return head;
+
     }
 
 
