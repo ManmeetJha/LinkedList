@@ -35,20 +35,18 @@ public class LinkedList {
     public static void main(String[] args) {
         Node head = new Node(56);
         Node second = new Node(30);
-        Node third = new Node(70);
+        Node third = new Node(40);
+        Node fourth = new Node(70);
 
         head.setNext(second);
         second.setNext(third);
-        third.setNext(null);
+        third.setNext(fourth);
+        fourth.setNext(null);
 
         displayList(head);
-        int pos=searchAndInsert(head,30,40);
-        if(pos==-1)
-            System.out.println("Element not found");
-        else
-            System.out.println("Element inserted at:"+pos);
-        displayList(head);
-
+        System.out.println("Size of linked list is :" + size(head));
+        displayList(deleteFromBetween(head, 40));
+        System.out.println("Size of linked list is :" + size(deleteFromBetween(head, 40)));
 
     }
 
@@ -123,27 +121,48 @@ public class LinkedList {
             return -1;
     }
 
-    public static int searchAndInsert(Node head,int data,int insert_data)
-    {   Node newNode=new Node(insert_data);
-        Node current=head;
-        int position=1;
-        boolean found=false;
-        while(current.next!=null)
-        {
-            if(current.data==data)
-            {
-                newNode.next=current.next;
-                current.next=newNode;
-                found=true;
+    public static int searchAndInsert(Node head, int data, int insert_data) {
+        Node newNode = new Node(insert_data);
+        Node current = head;
+        int position = 1;
+        boolean found = false;
+        while (current.next != null) {
+            if (current.data == data) {
+                newNode.next = current.next;
+                current.next = newNode;
+                found = true;
                 break;
             }
-            current=current.next;
+            current = current.next;
             position++;
         }
-        if(found==true)
-        return position+1;
+        if (found == true)
+            return position + 1;
         else
             return -1;
+    }
+
+    public static Node deleteFromBetween(Node head, int data) {
+        Node current = head;
+        while (current.next != null) {
+            if (current.next.data == data) {
+                Node temp = current.next;
+                current.next = current.next.next;
+                break;
+            }
+            current = current.next;
+        }
+        return head;
+    }
+
+    public static int size(Node head) {
+        Node current = head;
+        int count = 1;
+        while (current.next != null) {
+            count++;
+            current = current.next;
+        }
+        return count;
     }
 
 }

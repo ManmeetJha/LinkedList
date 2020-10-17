@@ -33,6 +33,20 @@ public class LinkedListTest {
         Assert.assertEquals(3, pos);
     }
 
+    @Test
+    public void size()
+    {
+        LinkedList.Node head = new LinkedList.Node(56);
+        LinkedList.Node second = new LinkedList.Node(30);
+        LinkedList.Node third = new LinkedList.Node(70);
+
+        head.setNext(second);
+        second.setNext(third);
+
+        int size=LinkedList.size(head);
+        Assert.assertEquals(3, size);
+        
+    }
 
 
 }
