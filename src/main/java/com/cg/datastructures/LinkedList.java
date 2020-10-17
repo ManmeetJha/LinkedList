@@ -1,12 +1,29 @@
 package com.cg.datastructures;
 
+
 public class LinkedList {
 
-    private Node head;
+    Node head;
 
     public static class Node {
-        private int data;
-        private Node next;
+        int data;
+        Node next;
+
+        public int getData() {
+            return data;
+        }
+
+        public void setData(int data) {
+            this.data = data;
+        }
+
+        public Node getNext() {
+            return next;
+        }
+
+        public void setNext(Node next) {
+            this.next = next;
+        }
 
         public Node(int data) {
             this.data = data;
@@ -14,19 +31,26 @@ public class LinkedList {
         }
     }
 
+
     public static void main(String[] args) {
         Node head = new Node(56);
         Node second = new Node(30);
-        Node third=new Node(70);
+        Node third = new Node(70);
 
-        head.next = second;
-        second.next = third;
-        third.next=null;
+        head.setNext(second);
+        second.setNext(third);
+        third.setNext(null);
 
-        LinkedList.popLast(head);
         displayList(head);
+        int pos = LinkedList.search(head, 30);
+        if (pos == -1)
+            System.out.println("Element not found");
+        else
+            System.out.println("Element is at position:" + pos);
+
 
     }
+
 
     public static void displayList(Node head) {
         Node current = head;
@@ -63,24 +87,39 @@ public class LinkedList {
         previous.next = newNode;
     }
 
-    public static Node pop(Node head)
-    {
-        Node temp=head;
-        head=head.next;
+    public static Node pop(Node head) {
+        Node temp = head;
+        head = head.next;
         return head;
 
     }
 
-    public static Node popLast(Node head)
-    {
-        Node current=head;
-        while(current.next.next!=null)
-        {
-            current=current.next;
+    public static Node popLast(Node head) {
+        Node current = head;
+        while (current.next.next != null) {
+            current = current.next;
 
         }
-        current.next=null;
+        current.next = null;
         return head;
+    }
+
+    public static int search(Node head, int data) {
+        int position = 1;
+        boolean found = false;
+        Node current = head;
+        while (current.next != null) {
+            if (current.data == data) {
+                found = true;
+                break;
+            }
+            current = current.next;
+            position++;
+        }
+        if (found == true)
+            return position;
+        else
+            return -1;
     }
 
 
