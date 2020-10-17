@@ -23,8 +23,8 @@ public class LinkedList {
         second.next = third;
         third.next=null;
 
-        Node newHead=LinkedList.pop(head);
-        displayList(newHead);
+        LinkedList.popLast(head);
+        displayList(head);
 
     }
 
@@ -69,6 +69,18 @@ public class LinkedList {
         head=head.next;
         return head;
 
+    }
+
+    public static Node popLast(Node head)
+    {
+        Node current=head;
+        while(current.next.next!=null)
+        {
+            current=current.next;
+
+        }
+        current.next=null;
+        return head;
     }
 
 
