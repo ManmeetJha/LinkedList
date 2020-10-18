@@ -45,7 +45,7 @@ public class LinkedListTest {
 
         int size=LinkedList.size(head);
         Assert.assertEquals(3, size);
-        
+
     }
 
 
